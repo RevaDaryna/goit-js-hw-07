@@ -37,13 +37,16 @@ function onGalleryContainerClick(event) {
   instance.show();
 
 
-  window.addEventListener("keydown", (event) => {
-    console.log(event)
-    if (event.code === "Escape") {
+    const closeLightbox = () => {
       instance.close();
-      window.removeEventListener("keydown", onGalleryContainerClick);
-      window.addEventListener("keydown", onGalleryContainerClick);
-    }
-  });
+      window.removeEventListener("keydown", onKeyDown);
+      console.log(event)
+    };
+    const onKeyDown = (event) => {
+      if (event.code === "Escape") {
+        closeLightbox();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
   }
   
